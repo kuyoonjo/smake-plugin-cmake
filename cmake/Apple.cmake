@@ -1,0 +1,16 @@
+# Usage:
+# cmake -G Ninja
+#    -DCMAKE_TOOLCHAIN_FILE=/path/to/this/file
+#    -DTARGET_TRIPLE=[aarch64-apple-darwin|...]
+
+STRING(REGEX REPLACE "-.*" "" ARCH "${TARGET_TRIPLE}")
+
+set(CMAKE_SYSTEM_NAME Darwin)
+set(CMAKE_SYSTEM_PROCESSOR ${ARCH})
+
+set(CMAKE_C_COMPILER_TARGET ${TARGET_TRIPLE})
+set(CMAKE_CXX_COMPILER_TARGET ${TARGET_TRIPLE})
+set(CMAKE_ASM_COMPILER_TARGET ${TARGET_TRIPLE})
+
+message(STATUS "Arch: \"${ARCH}\"")
+message(STATUS "Triple: \"${TARGET_TRIPLE}\"")
